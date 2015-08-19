@@ -38,10 +38,12 @@ button.grind {
 }
 .log {
 	text-align: left;
-	margin: 1em auto;
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
 	width: 100%;
 	border-radius: 3px;
-	max-height: 20em;
+	max-height: 17em;
 	overflow-y: auto;
 }
 .log .row {
