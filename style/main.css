@@ -1,67 +1,67 @@
 app {
-    text-align: center;
-    font-size: 16px;
-    width: 100%;
-    max-width: 750px;
-    display: block;
-    margin: 0 auto;
-    font-family: helvetica;
+	text-align: center;
+	font-size: 16px;
+	width: 100%;
+	max-width: 750px;
+	display: block;
+	margin: 0 auto;
+	font-family: helvetica;
 }
 .level {
-    margin: 1.5em;
-    font-size: 2em;
-    font-weight: bold;
+	margin: 1.5em;
+	font-size: 2em;
+	font-weight: bold;
 }
 .progress-bar {
-    position: relative;
-    margin: 1em auto;
-    width: 100%;
-    height: 1.5em;
-    border-radius: 3px;
-    border: 1px solid #777;
+	position: relative;
+	margin: 1em auto;
+	width: 100%;
+	height: 1.5em;
+	border-radius: 3px;
+	border: 1px solid #777;
 }
 .progress-bar .progress {
-    background-color: rgb(55, 216, 82);
-    height: 100%;
-    position: absolute;
-    z-index: 1;
+	background-color: rgb(55, 216, 82);
+	height: 100%;
+	position: absolute;
+	z-index: 1;
 }
 .progress-bar .label {
-    position: relative;
-    z-index: 2;
-    margin-top:0.25em;
+	position: relative;
+	z-index: 2;
+	margin-top:0.25em;
 }
 button.grind {
-    padding: 0.5em;
-    font-size: 1.5em;
-    width: 100%;
+	padding: 0.5em;
+	font-size: 1.5em;
+	width: 100%;
 }
 .log {
-    text-align: left;
-    margin: 1em auto;
-    width: 100%;
-    border-radius: 3px;
-    max-height: 20em;
-    overflow-y: auto;
+	text-align: left;
+	margin: 1em auto;
+	width: 100%;
+	border-radius: 3px;
+	max-height: 20em;
+	overflow-y: auto;
 }
 .log .row {
-    padding-left: 0.25em;
-    padding-right: 0.25em;
-    border-radius: 3px;
-    margin-bottom: 0.1em;
+	padding-left: 0.25em;
+	padding-right: 0.25em;
+	border-radius: 3px;
+	margin-bottom: 0.1em;
 }
 .log .standard {
-    color: inherit;
+	color: inherit;
 }
 .log .good {
-    background: rgba(45, 67, 134, 0.3);
+	background: rgba(45, 67, 134, 0.3);
 }
 .log .great {
-    background: rgba(128, 56, 136, 0.3);
+	background: rgba(128, 56, 136, 0.3);
 }
 .log .ultimate {
-    background: rgba(50,200,50,0.5);
+	background: rgba(50,200,50,0.5);
 }
 .log .levelup {
-    background: gold;
+	background: gold;
 }
