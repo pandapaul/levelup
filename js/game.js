@@ -5,9 +5,10 @@ $(function () {
 		level: e.find('.level'),
 		progress: e.find('.progress'),
 		grindButton: e.find('button.grind'),
-		log: e.find('.log')
+		log: e.find('.log'),
+		highScore: e.find('.high-score')
 	};
-	var level, xp;
+	var level, xp, highScore;
 	var levels = [0, 100, 200, 300, 500, 750, 1000, 1300, 1600, 2000, 2500, 3000, 3500, 4000, 5000];
 	var maxLevelGap = levels[levels.length - 1] - levels[levels.length - 2];
 	var events = [{
@@ -80,6 +81,8 @@ $(function () {
 	}
 
 	reset();
+	fetchHighScore();
+	displayHighScore();
 
 	display.grindButton.on('click', grind);
 
@@ -90,6 +93,7 @@ $(function () {
 		calculateLevel();
 		log(event);
 		displayProgress();
+		updateHighScore();
 	}
 
 	function randomEvent() {
@@ -157,5 +161,28 @@ $(function () {
 		}
 
 		return Math.min(100, 100 * (xp - base) / (goal - base));
+	}
+	
+	function updateHighScore() {
+		if (!highScore) {
+			fetchHighScore();
+		}
+		if (xp > highScore) {
+			highScore = xp;
+			saveHighScore();
+			displayHighScore();
+		}
+	}
+	
+	function fetchHighScore() {
+		highScore = localStorage.getItem('highXP') || 0;
+	}
+	
+	function saveHighScore() {
+		localStorage.setItem('highXP', highScore);
+	}
+	
+	function displayHighScore() {
+		display.highScore.text('High Score: ' + highScore);
 	}
 });

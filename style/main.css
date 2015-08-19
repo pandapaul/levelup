@@ -6,6 +6,7 @@ app {
 	display: block;
 	margin: 0 auto;
 	font-family: helvetica;
+	position: relative;
 }
 .level {
 	margin: 1.5em;
@@ -66,4 +67,10 @@ button.grind {
 }
 .log .levelup {
 	background: gold;
+}
+.high-score {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 80%;
 }
