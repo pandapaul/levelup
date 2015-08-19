@@ -104,7 +104,6 @@ $(function () {
 
 	function randomEvent() {
 		var chance = Math.random();
-		console.log('chance', chance);
 		var event;
 		$.each(events, function (i, v) {
 			if (chance > v.chanceLow) {
