@@ -14,71 +14,61 @@ $(function () {
 		description: 'Did some gathering.',
 		xpLow: 1,
 		xpHigh: 5,
-		chanceLow: 0,
-		chanceHigh: 0.2,
+		chance: 0,
 		class: 'standard'
 	}, {
 		description: 'Did some crafting.',
 		xpLow: 1,
 		xpHigh: 5,
-		chanceLow: 0.2,
-		chanceHigh: 0.4,
+		chance: 0.2,
 		class: 'standard'
 	}, {
 		description: 'Did some fighting.',
 		xpLow: 1,
 		xpHigh: 5,
-		chanceLow: 0.4,
-		chanceHigh: 0.6,
+		chance: 0.4,
 		class: 'standard'
 	}, {
 		description: 'Gathered some uncommon materials.',
 		xpLow: 5,
 		xpHigh: 15,
-		chanceLow: 0.6,
-		chanceHigh: 0.7,
+		chance: 0.6,
 		class: 'good'
 	}, {
 		description: 'Crafted something neat.',
 		xpLow: 5,
 		xpHigh: 15,
-		chanceLow: 0.7,
-		chanceHigh: 0.8,
+		chance: 0.7,
 		class: 'good'
 	}, {
 		description: 'Fought a tough mob.',
 		xpLow: 5,
 		xpHigh: 15,
-		chanceLow: 0.8,
-		chanceHigh: 0.9,
+		chance: 0.8,
 		class: 'good'
 	}, {
 		description: 'Mined sparkling gems.',
 		xpLow: 15,
 		xpHigh: 30,
-		chanceLow: 0.9,
-		chanceHigh: 0.93,
+		chance: 0.9,
 		class: 'great'
 	}, {
 		description: 'Built an exquisite weapon.',
 		xpLow: 15,
 		xpHigh: 30,
-		chanceLow: 0.93,
-		chanceHigh: 0.96,
+		chance: 0.93,
 		class: 'great'
 	}, {
 		description: 'Vanquished a dragon.',
 		xpLow: 15,
 		xpHigh: 30,
-		chanceLow: 0.96,
-		chanceHigh: 0.99,
+		chance: 0.96,
 		class: 'great'
 	}, {
 		description: 'Completed a quest!',
 		xpLow: 30,
 		xpHigh: 75,
-		chanceLow: 0.99,
-		chanceHigh: 1,
+		chance: 0.99,
 		class: 'ultimate'
 	}];
 
@@ -86,7 +76,7 @@ $(function () {
 		level = 1;
 		xp = 0;
 		display.log.empty();
-		updateDisplayXp();
+		displayProgress();
 	}
 
 	reset();
@@ -99,14 +89,14 @@ $(function () {
 		xp += event.gain;
 		calculateLevel();
 		log(event);
-		updateDisplayXp();
+		displayProgress();
 	}
 
 	function randomEvent() {
 		var chance = Math.random();
 		var event;
 		$.each(events, function (i, v) {
-			if (chance > v.chanceLow) {
+			if (chance > v.chance) {
 				event = v;
 			}
 		});
@@ -138,10 +128,18 @@ $(function () {
 	}
 
 	function log(event) {
-		$('<div/>').text(event.description + (event.gain? ' Gained ' + event.gain + ' XP' : '')).addClass(event.class).addClass('row').prependTo(display.log);
+		var message = event.description;
+		if (event.gain) {
+			message += ' Gained ' + event.gain + ' XP';
+		}
+		$('<div/>')
+			.text(message)
+			.addClass(event.class)
+			.addClass('row')
+			.prependTo(display.log);
 	}
 
-	function updateDisplayXp() {
+	function displayProgress() {
 		display.xp.text(xp + ' XP');
 		display.level.text('Level ' + level);
 		display.progress.css('width', calculateProgress() + '%');
