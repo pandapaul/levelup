@@ -4,12 +4,19 @@ app {
 	width: 100%;
 	max-width: 750px;
 	display: block;
-	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2em;
 	font-family: helvetica;
 	position: relative;
 }
+header {
+	height: 1em;
+	position: relative;
+	width: 100%;
+}
 .level {
-	margin: 1.5em;
+	margin: 1em;
 	font-size: 2em;
 	font-weight: bold;
 }
@@ -69,8 +76,6 @@ button.grind {
 	background: gold;
 }
 .high-score {
-	position: absolute;
-	top: 0;
-	right: 0;
+	text-align: right;
 	font-size: 80%;
 }
