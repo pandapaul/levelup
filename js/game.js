@@ -6,11 +6,22 @@ $(function () {
 		progress: e.find('.progress'),
 		grindButton: e.find('button.grind'),
 		log: e.find('.log'),
-		highScore: e.find('.high-score')
+		highScore: e.find('.high-score'),
+		overlay: $('.overlay'),
+		effect: $('.overlay-content'),
+		effectIcon: $('.effect-icon')
 	};
 	var level, xp, highScore;
 	var levels = [0, 100, 200, 300, 500, 750, 1000, 1300, 1600, 2000, 2500, 3000, 3500, 4000, 5000];
 	var maxLevelGap = levels[levels.length - 1] - levels[levels.length - 2];
+	var effects = {
+		levelUp: {
+			icon: 'spiked-halo.svg'
+		},
+		dragon: {
+			icon: 'double-dragon.svg'
+		}
+	};
 	var events = [{
 		description: 'Did some gathering.',
 		xpLow: 1,
@@ -64,7 +75,8 @@ $(function () {
 		xpLow: 15,
 		xpHigh: 30,
 		chance: 0.96,
-		class: 'great'
+		class: 'great',
+		effect: effects.dragon
 	}, {
 		description: 'Completed a quest!',
 		xpLow: 30,
@@ -124,6 +136,7 @@ $(function () {
 			level += Math.floor((xp - levels[levels.length - 1])/maxLevelGap);
 		}
 		if (level > lastLevel) {
+			flashEffect(effects.levelUp);
 			log({
 				description: 'Leveled up! Reached level ' + level,
 				class: 'levelup'
@@ -135,6 +148,9 @@ $(function () {
 		var message = event.description;
 		if (event.gain) {
 			message += ' Gained ' + event.gain + ' XP';
+		}
+		if(event.effect) {
+			flashEffect(event.effect);
 		}
 		$('<div/>')
 			.text(message)
@@ -184,5 +200,16 @@ $(function () {
 	
 	function displayHighScore() {
 		display.highScore.text('High Score: ' + highScore);
+	}
+
+	function flashEffect(effect) {
+		display.overlay.addClass('show');
+		display.effect.addClass('show');
+		display.effectIcon.attr('src','icons/' + effect.icon);
+		display.effectIcon.addClass(effect.class);
+		setTimeout(function() {
+			display.overlay.removeClass('show');
+			display.effect.removeClass('show');
+		}, 800);
 	}
 });
